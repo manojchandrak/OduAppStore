@@ -1,0 +1,66 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jul 9, 2015, 1:05:33 PM
+    Author     : m1kompal
+*/
+  
+            
+.waterfall-demo-header-nav .mdl-navigation__link:last-of-type  {
+  padding-right: 0;
+}
+
+  .sign_on{
+   margin-top: 50px; 
+   margin-left: 50px;
+   text-align: center;
+           
+
+ 
+  }
+
+
+  main{
+      background-color: #EBEBEB;
+  }
+.mdl-layout__header{
+       background-color:#003366;
+     
+  }
+button.mdl-button mdl-js-button mdl-js-ripple-effect{
+    color:  #003366;
+}
+
+.demo-card-square.mdl-card {
+  width: 320px;
+  height: 320px;
+  margin:0 auto;
+}
+.mdl-button_ripple-container{
+    alignment-adjust: central;
+}
+.signIn_wrapper{
+     text-align: right;
+}
+
+.mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary{
+        position: absolute;
+    top: 50%;
+}
+.mdl-textfield mdl-js-textfield mdl-textfield--expandable textfield-demo{
+text-align: center
+}
+.mdl-button mdl-js-button mdl-button--icon{
+ text-align: center   
+}
+.mdl-navigation__link>a:hover{
+     background-color:#003366;
+     color: white;
+}
+.mdl-layout__drawer{
+
+    background-color:#EBEBEB;
+}
