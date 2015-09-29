@@ -140,7 +140,7 @@ if (isset($_POST["btn-submit"])&&$_POST['reviewText']!=""){
   <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
     <div class="page-content" ng-controller="cardControler">
   <h3 style="margin-left:7px">Lynda</h3>
-<img src="../images/ly.jpeg"  style="margin-left:7px">
+<img src="../images/ly.jpg"  style="margin-left:7px">
 <br><br><br>&nbsp; &nbsp;&nbsp;<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" >
   Start
 </button>
@@ -175,6 +175,9 @@ if (isset($_POST["btn-submit"])&&$_POST['reviewText']!=""){
   
   <?php
 $result = mysql_query("select * from Reviews where app_id=2");
+if(mysql_num_rows($result)==0)
+echo' No Reviews yet ';
+else{
 echo'<table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp"  style="margin-left:7px;width:800px;"><th style="text-align: center;" class="mdl-data-table__cell--non-numeric">Review</th><th>By</th>';
   while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) { 
 
@@ -182,6 +185,7 @@ echo'<tr><td  style="text-align: center;">';echo $line['reviewText'];echo'</td><
  //echo "<br>\n";
   }
   echo'</td></tr></table>';
+}
   ?>
   </div>
 
@@ -200,7 +204,7 @@ echo'<tr><td  style="text-align: center;">';echo $line['reviewText'];echo'</td><
     
         <div class="box-result-cnt">
             <?php
-                $query = mysql_query("SELECT * FROM wcd_rate"); 
+                $query = mysql_query("SELECT * FROM wcd_rate where app_id=2"); 
                 while($data = mysql_fetch_assoc($query)){
                     $rate_db[] = $data;
                     $sum_rates[] = $data['rate'];

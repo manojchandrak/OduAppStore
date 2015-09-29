@@ -2,7 +2,10 @@
 include_once '../Dbconnect.php';
 $post_id = '1'; 
 session_start();
+$rate_bg=0;
+
 $appid=1;
+$_SESSION['appidsession']=$appid;
 
 $user=$_SESSION['user'];
 
@@ -200,7 +203,7 @@ echo'<tr><td  style="text-align: center;">';echo $line['reviewText'];echo'</td><
 		
         <div class="box-result-cnt">
             <?php
-                $query = mysql_query("SELECT * FROM wcd_rate"); 
+                $query = mysql_query("SELECT * FROM wcd_rate where app_id=1"); 
                 while($data = mysql_fetch_assoc($query)){
                     $rate_db[] = $data;
                     $sum_rates[] = $data['rate'];
@@ -217,6 +220,7 @@ echo'<tr><td  style="text-align: center;">';echo $line['reviewText'];echo'</td><
                 }
 				$_SESSION['varname'] = $rate_bg;
 				$_SESSION['varname2']=$rate_times;
+        
             ?>
             <hr>
 			<h4  style="margin-left:7px">Overall Rating</h4>	
