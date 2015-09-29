@@ -1,0 +1,11 @@
+[
+   {"name":"Blackboard", "text":"Blackboard is an app ","image":"images/bb.jpeg"},
+            {"name":"Lynda","text":"Lynda is an app","image":"images/ly.jpg"},
+                {"name":"Smart Thinking","text":"Smart thinking is an app","image":"images/smart.jpg"},
+                    {"name":"Gmail","text":"Gmail is an app","image":"images/gm.png"},
+                        {"name":"Degree Works","text":"Degree Wroks is an app","image":"images/dw.jpg"},
+                        {"name":"My Advisor","text":"My Advisor is an app","image":"images/advisor.png"},
+                          {"name":"Monarch Link","text":"Monarch Link is an app","image":"images/Monarch.png"},
+                            {"name":"Money matters","text":"Money matters is an app","image":"images/money.jpg"}
+    
+]

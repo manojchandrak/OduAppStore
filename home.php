@@ -1,6 +1,25 @@
 <?php
+
 session_start();
+
 include_once 'dbconnect.php';
+
+if (!empty($_SESSION['varname'])) {
+    $rate_bg = $_SESSION['varname'];
+}
+else{
+	 $rate_bg=0;
+}
+if (!empty($_SESSION['varname2'])) {
+    $rate_times = $_SESSION['varname2'];
+}
+else{
+	 $rate_times=0;
+}
+
+
+
+
 
 if(!isset($_SESSION['user']))
 {
@@ -41,6 +60,9 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+<script src="jRate.min.js"></script>
        
          
         <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.indigo-pink.min.css">
@@ -48,7 +70,17 @@ and open the template in the editor.
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700"  type="text/css">       
  <link href="css/stylesheet.css" rel="stylesheet" type="text/css"/>
+  <link href="css/stars.css" rel="stylesheet" type="text/css"/>
  <script src="js/app.js" type="text/javascript"></script>
+ <script>
+ $(document).ready({
+	$(.mdl-button mdl-js-button mdl-js-ripple-effect).click({
+		(.mdl-card mdl-shadow--2dp demo-card-square.ng-scope).hide();
+		
+	}) 
+ });
+ </script>
+ 
     </head>
     <body ng-app="materialApp">
         <!-- The drawer is always open in large screens. The header is always shown,
@@ -70,11 +102,7 @@ and open the template in the editor.
                  id="fixed-header-drawer-exp" ng-model="test" placeholder="Search Store"/>
         </div>
       </div>
-	  <div id="right">
-     <div id="content" style="text-align:right">
-         Welcome, <?php echo $userRow['username']; ?>&nbsp;<a href="logout.php?logout">Sign Out</a>
-        </div>
-    </div>
+	
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -98,6 +126,12 @@ and open the template in the editor.
 Sign In
 </a>
             </div>-->
+			<div id="right">
+     <div id="content" style="text-align:right">
+         Welcome, <?php echo $userRow['username']; ?>&nbsp; &nbsp;&nbsp;<a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" href="logout.php?logout">Sign Out</a>
+        </div>
+    </div>
+			
         <h4 style="margin-left: 20px;">All Apps
         <button class="mdl-button mdl-js-button mdl-js-ripple-effect" style="float: right;clear: both">
   See More
@@ -115,12 +149,22 @@ Sign In
    
   <div class="mdl-card__supporting-text" ng-if="page.name=='Blackboard'">
           <h2 class="mdl-card__title-text" >{{page.name}}</h2>
-  Blackboard is an app
+		  <div class="rate-result-cnt">
+                <div class="rate-bg" style="width:<?php
+				echo $rate_bg; ?>%"> </div>
+                <div class="rate-stars"></div>
+					<div style="margin-left:90px">(<?php echo $rate_times; ?>)</div>	
+            </div>
+		
+		
+ {{page.text}} 
 
   <div class="mdl-card__actions mdl-card--border">
-    <a class="mdl-button mdl-js-button mdl-js-ripple-effect">
+    <a class="mdl-button mdl-js-button mdl-js-ripple-effect" href="\OduAppStore\apps\Blackboard.php">
       Details
     </a>
+	
+
   </div>
  
 
@@ -128,50 +172,50 @@ Sign In
         
      <div class="mdl-card__supporting-text" ng-if="page.name=='Lynda'">
           <h2 class="mdl-card__title-text" >{{page.name}}</h2>
-  Lynda is an app
+ {{page.text}} 
 
   <div class="mdl-card__actions mdl-card--border">
-    <a class="mdl-button mdl-js-button mdl-js-ripple-effect">
+    <a class="mdl-button mdl-js-button mdl-js-ripple-effect" href="\OduAppStore\apps\Lynda.php">
       Details
     </a>
   </div>
 </div>
      <div class="mdl-card__supporting-text" ng-if="page.name=='Smart Thinking'">
           <h2 class="mdl-card__title-text" >{{page.name}}</h2>
-  Smart Thinking is an app
+ {{page.text}} 
 
   <div class="mdl-card__actions mdl-card--border">
-    <a class="mdl-button mdl-js-button mdl-js-ripple-effect">
+    <a class="mdl-button mdl-js-button mdl-js-ripple-effect" href="\OduAppStore\apps\SmartThinking.php">
       Details
     </a>
   </div>
 </div>
          <div class="mdl-card__supporting-text" ng-if="page.name=='Gmail'">
               <h2 class="mdl-card__title-text" >{{page.name}}</h2>
-  Gmail is an app
+  {{page.text}} 
 
   <div class="mdl-card__actions mdl-card--border">
-    <a class="mdl-button mdl-js-button mdl-js-ripple-effect">
+    <a class="mdl-button mdl-js-button mdl-js-ripple-effect" href="\OduAppStore\apps\Gmail.php">
       Details
     </a>
   </div>
 </div>
          <div class="mdl-card__supporting-text" ng-if="page.name=='Degree Works'">
               <h2 class="mdl-card__title-text" >{{page.name}}</h2>
-  Degree Works is an app
+  {{page.text}} 
 
   <div class="mdl-card__actions mdl-card--border">
-    <a class="mdl-button mdl-js-button mdl-js-ripple-effect">
+    <a class="mdl-button mdl-js-button mdl-js-ripple-effect" href="\OduAppStore\apps\DegreeWorks.php">
       Details
     </a>
   </div>
 </div>
            <div class="mdl-card__supporting-text" ng-if="page.name=='My Advisor'">
           <h2 class="mdl-card__title-text" >{{page.name}}</h2>
-  My Advisor is an app
+ {{page.text}} 
 
   <div class="mdl-card__actions mdl-card--border">
-    <a class="mdl-button mdl-js-button mdl-js-ripple-effect">
+    <a class="mdl-button mdl-js-button mdl-js-ripple-effect" href="\OduAppStore\apps\MyAdvisor.php">
       Details
     </a>
   </div>
@@ -180,10 +224,10 @@ Sign In
 </div>  
                      <div class="mdl-card__supporting-text" ng-if="page.name=='Monarch Link'">
           <h2 class="mdl-card__title-text" >{{page.name}}</h2>
- Monarch Link is an app
+ {{page.text}} 
 
   <div class="mdl-card__actions mdl-card--border">
-    <a class="mdl-button mdl-js-button mdl-js-ripple-effect">
+    <a class="mdl-button mdl-js-button mdl-js-ripple-effect" href="\OduAppStore\apps\MonarchLink.php">
       Details
     </a>
   </div>
@@ -192,10 +236,10 @@ Sign In
 </div>  
                          <div class="mdl-card__supporting-text" ng-if="page.name=='Money matters'">
           <h2 class="mdl-card__title-text" >{{page.name}}</h2>
- Money matters is an app
+ {{page.text}} 
 
   <div class="mdl-card__actions mdl-card--border">
-    <a class="mdl-button mdl-js-button mdl-js-ripple-effect">
+    <a class="mdl-button mdl-js-button mdl-js-ripple-effect" href="\OduAppStore\apps\MoneyMatters.php">
       Details
     </a>
   </div>
@@ -220,7 +264,7 @@ Sign In
    
   <div class="mdl-card__supporting-text" ng-if="page.name=='Blackboard'">
           <h2 class="mdl-card__title-text" >{{page.name}}</h2>
-  Blackboard is an app
+ {{page.text}} 
 
   <div class="mdl-card__actions mdl-card--border">
     <a class="mdl-button mdl-js-button mdl-js-ripple-effect">
@@ -231,8 +275,7 @@ Sign In
         
      <div class="mdl-card__supporting-text" ng-if="page.name=='Lynda'">
           <h2 class="mdl-card__title-text" >{{page.name}}</h2>
-  Lynda is an app
-
+ {{page.text}} 
   <div class="mdl-card__actions mdl-card--border">
     <a class="mdl-button mdl-js-button mdl-js-ripple-effect">
       Details
@@ -241,7 +284,7 @@ Sign In
 </div>
      <div class="mdl-card__supporting-text" ng-if="page.name=='Smart Thinking'">
           <h2 class="mdl-card__title-text" >{{page.name}}</h2>
-  Smart Thinking is an app
+ {{page.text}} 
 
   <div class="mdl-card__actions mdl-card--border">
     <a class="mdl-button mdl-js-button mdl-js-ripple-effect">
@@ -251,7 +294,7 @@ Sign In
 </div>
          <div class="mdl-card__supporting-text" ng-if="page.name=='Gmail'">
               <h2 class="mdl-card__title-text" >{{page.name}}</h2>
-  Gmail is an app
+ {{page.text}} 
 
   <div class="mdl-card__actions mdl-card--border">
     <a class="mdl-button mdl-js-button mdl-js-ripple-effect">
@@ -261,7 +304,7 @@ Sign In
 </div>
          <div class="mdl-card__supporting-text" ng-if="page.name=='Degree Works'">
               <h2 class="mdl-card__title-text" >{{page.name}}</h2>
-  Degree Works is an app
+   {{page.text}} 
 
   <div class="mdl-card__actions mdl-card--border">
     <a class="mdl-button mdl-js-button mdl-js-ripple-effect">
@@ -271,7 +314,7 @@ Sign In
 </div>
         <div class="mdl-card__supporting-text" ng-if="page.name=='My Advisor'">
           <h2 class="mdl-card__title-text" >{{page.name}}</h2>
-  My Advisor is an app
+  {{page.text}} 
 
   <div class="mdl-card__actions mdl-card--border">
     <a class="mdl-button mdl-js-button mdl-js-ripple-effect">
@@ -283,7 +326,7 @@ Sign In
 </div>  
                      <div class="mdl-card__supporting-text" ng-if="page.name=='Monarch Link'">
           <h2 class="mdl-card__title-text" >{{page.name}}</h2>
- Monarch Link is an app
+ {{page.text}} 
 
   <div class="mdl-card__actions mdl-card--border">
     <a class="mdl-button mdl-js-button mdl-js-ripple-effect">
@@ -295,7 +338,7 @@ Sign In
 </div>  
                          <div class="mdl-card__supporting-text" ng-if="page.name=='Money matters'">
           <h2 class="mdl-card__title-text" >{{page.name}}</h2>
- Money matters is an app
+ {{page.text}} 
 
   <div class="mdl-card__actions mdl-card--border">
     <a class="mdl-button mdl-js-button mdl-js-ripple-effect">
