@@ -15,6 +15,7 @@ if (isset($_POST["btn-submit"])&&$_POST['reviewText']!=""){
  $user=$userRow['username'];
  mysql_query("insert into reviews(reviewText,user,app_id) values('$reviewText','$user','$appid')");
  header("Location:Blackboard.php");
+
  unset($_POST);
 
  //$query = "select * from Reviews ";
@@ -173,7 +174,7 @@ if (isset($_POST["btn-submit"])&&$_POST['reviewText']!=""){
   <br><br><br><br>
   
   <?php
-$result = mysql_query("select * from Reviews");
+$result = mysql_query("select * from Reviews where app_id=1");
 echo'<table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp"  style="margin-left:7px;width:800px;"><th style="text-align: center;" class="mdl-data-table__cell--non-numeric">Review</th><th>By</th>';
   while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) { 
 
