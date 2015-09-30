@@ -205,7 +205,7 @@ echo'<tr><td  style="text-align: center;">';echo $line['reviewText'];echo'</td><
     
         <div class="box-result-cnt">
             <?php
-                $query = mysql_query("SELECT * FROM wcd_rate where app_id=2"); 
+                $query = mysql_query("SELECT * FROM wcd_rate where app_id='$appid'"); 
                 while($data = mysql_fetch_assoc($query)){
                     $rate_db[] = $data;
                     $sum_rates[] = $data['rate'];

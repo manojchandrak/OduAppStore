@@ -126,9 +126,15 @@ and open the template in the editor.
 Sign In
 </a>
             </div>-->
+<div>
+  <input type="text" name="focus" required class="search-box" placeholder="Enter search term" />
+    <button class="close-icon" type="reset"></button>
+  </div>
+
+
 			<div id="right">
-     <div id="content" style="text-align:right">
-         Welcome, <?php echo $userRow['username']; ?>&nbsp; &nbsp;&nbsp;<a class="mdl-button mdl-js-button" href="logout.php?logout">Sign Out</a>
+     <div id="content" style="text-align:center">
+        <h5> Welcome, <?php echo $userRow['username']; ?></h5>&nbsp; &nbsp;&nbsp;<a class="mdl-button mdl-js-button" href="logout.php?logout" style="float:right">Sign Out</a>
         </div>
     </div>
 			
@@ -151,7 +157,7 @@ Sign In
           <h2 class="mdl-card__title-text" >{{page.name}}</h2>
 		  <div class="rate-result-cnt">
                 <div class="rate-bg" style="width:<?php
-				echo $rate_bg?>%"> </div>
+				echo $_COOKIE['blcookie']?>%"> </div>
                 <div class="rate-stars"></div>
 					<div style="margin-left:90px">(<?php echo $rate_times; ?>)</div>	
             </div>
