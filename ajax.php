@@ -10,7 +10,7 @@ session_start();
     	$thepost = $_POST['post_id'];
 		$user=$_SESSION['user'];
 
-    	$query = mysql_query("SELECT * FROM wcd_rate  where user_id= '$user'  "); 
+    	$query = mysql_query("SELECT * FROM wcd_rate  where user_id= '$user' and app_id='$app_id' "); 
     	while($data = mysql_fetch_assoc($query)){
     		$rate_db[] = $data;
     	}
@@ -18,7 +18,7 @@ session_start();
     	if(@count($rate_db) == 0 ){
     		mysql_query("INSERT INTO wcd_rate (id_post, user_id, rate,app_id)VALUES('$thepost', '$user', '$therate','$app_id')");
     	}else{
-    		mysql_query("UPDATE wcd_rate SET rate= '$therate' WHERE user_id = '$user'");
+    		mysql_query("UPDATE wcd_rate SET rate= '$therate' WHERE user_id = '$user' and app_id='$app_id'");
     	}
     } 
 ?>

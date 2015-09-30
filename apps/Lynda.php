@@ -3,6 +3,7 @@ include_once '../Dbconnect.php';
 $post_id = '1'; 
 session_start();
 $appid=2;
+$_SESSION['appidsession']=$appid;
 
 $user=$_SESSION['user'];
 
@@ -221,6 +222,8 @@ echo'<tr><td  style="text-align: center;">';echo $line['reviewText'];echo'</td><
                 }
         $_SESSION['varname'] = $rate_bg;
         $_SESSION['varname2']=$rate_times;
+        //$cookie_name='Lyndarating ';
+        //setcookie($cookie_name,$rate_bg, time() + (86400 * 30), "/");
             ?>
             <hr>
       <h4  style="margin-left:7px">Overall Rating</h4>  
