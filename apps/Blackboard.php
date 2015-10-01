@@ -8,7 +8,7 @@ setcookie('blcookie', $rate_bg, time() + (86400 * 30), "/");
 $appid=1;
 $_SESSION['appidsession']=$appid;
 
-$user=$_SESSION['user'];
+$userid=$_SESSION['user'];
 
 
 
@@ -17,7 +17,7 @@ if (isset($_POST["btn-submit"])&&$_POST['reviewText']!=""){
  $res=mysql_query("SELECT * FROM users WHERE user_id=".$_SESSION['user']);
  $userRow=mysql_fetch_array($res);
  $user=$userRow['username'];
- mysql_query("insert into reviews(reviewText,user,app_id) values('$reviewText','$user','$appid')");
+ mysql_query("insert into reviews(reviewText,user,app_id,user_id) values('$reviewText','$user','$appid','$userid')");
  header("Location:Blackboard.php");
 
  unset($_POST);
@@ -155,6 +155,60 @@ if (isset($_POST["btn-submit"])&&$_POST['reviewText']!=""){
 	<h4  style="margin-left:7px">Screenshots</h4>
 	<img src="../images/bbscreen.png"  style="margin-left:7px">
 	<hr>
+      <h4  style="margin-left:7px">Rate App</h4>  
+      
+<div class="rate-ex2-cnt">
+
+  
+            <div id="1" class="rate-btn-1 rate-btn"></div>
+            <div id="2" class="rate-btn-2 rate-btn"></div>
+            <div id="3" class="rate-btn-3 rate-btn"></div>
+            <div id="4" class="rate-btn-4 rate-btn"></div>
+            <div id="5" class="rate-btn-5 rate-btn"></div>
+        </div>
+    
+        <div class="box-result-cnt">
+            <?php
+                $query = mysql_query("SELECT * FROM wcd_rate where app_id='$appid'"); 
+                while($data = mysql_fetch_assoc($query)){
+                    $rate_db[] = $data;
+                    $sum_rates[] = $data['rate'];
+                }
+                if(@count($rate_db)){
+                    $rate_times = count($rate_db);
+                    $sum_rates = array_sum($sum_rates);
+                    $rate_value = $sum_rates/$rate_times;
+                    $rate_bg = (($rate_value)/5)*100;
+                }else{
+                    $rate_times = 0;
+                    $rate_value = 0;
+                    $rate_bg = 0;
+                }
+        $_SESSION['varname'] = $rate_bg;
+        $_SESSION['varname2']=$rate_times;
+        
+            ?>
+            <hr>
+      <h4  style="margin-left:7px">Overall Rating</h4>  
+            <h5  style="margin-left:7px">The content was rated <strong><?php echo $rate_times; ?></strong> times.</h5>
+           
+            <h5  style="margin-left:7px">The rating is at <strong><?php echo round($rate_value,2); ?></strong> .</h5>
+           
+            <div class="rate-result-cnt">
+                <div class="rate-bg" style="width:<?php echo $rate_bg; ?>%"></div>
+                <div class="rate-stars"></div>
+            </div>
+            <hr>
+
+        </div><!-- /rate-result-cnt -->
+
+
+
+
+
+
+
+
 		<div class="reviewDiv"><h4  style="margin-left:7px">User Reviews</h4>
 		<div><h5 style="margin-left:7px">Write a Review</h5></div>
 		<!--<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="reviewButton" 
@@ -178,68 +232,28 @@ if (isset($_POST["btn-submit"])&&$_POST['reviewText']!=""){
   <br><br><br><br>
   
   <?php
-$result = mysql_query("select * from Reviews where app_id='$appid'");
-if(mysql_num_rows($result)==0)
+$result = mysql_query("select distinct r.reviewText,r.user,w.rate from Reviews r,wcd_rate w group by r.user having  r.app_id='$appid' and r.user_id=w.user_id");
+if(@mysql_num_rows($result)==0)
 echo' No Reviews yet ';
 else{
-echo'<table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp"  style="margin-left:7px;width:800px;"><th style="text-align: center;" class="mdl-data-table__cell--non-numeric">Review</th><th>By</th>';
+echo'<table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp"  style="margin-left:7px;width:800px;"><th style="text-align: center;" class="mdl-data-table__cell--non-numeric">Review</th><th>Stars</th><th>By</th>';
   while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) { 
 
-echo'<tr><td  style="text-align: center;">';echo $line['reviewText'];echo'</td><td>' ;echo $line['user'];echo'</td>';
+echo'<tr><td  style="text-align: center;">';echo $line['reviewText'];echo'</td><td>' ;echo$line['rate'] ;echo '</td><td>';echo $line['user'];echo'</td>';
  //echo "<br>\n";
   }
-  echo'</td></tr></table>';
+  echo'</tr></table>';
 }
   ?>
   </div>
 
 		<hr>
-	 	<h4  style="margin-left:7px">Rate App</h4>	
-			
-<div class="rate-ex2-cnt">
+	 	
 
-	
-            <div id="1" class="rate-btn-1 rate-btn"></div>
-            <div id="2" class="rate-btn-2 rate-btn"></div>
-            <div id="3" class="rate-btn-3 rate-btn"></div>
-            <div id="4" class="rate-btn-4 rate-btn"></div>
-            <div id="5" class="rate-btn-5 rate-btn"></div>
-        </div>
-		
-        <div class="box-result-cnt">
-            <?php
-                $query = mysql_query("SELECT * FROM wcd_rate where app_id='$appid'"); 
-                while($data = mysql_fetch_assoc($query)){
-                    $rate_db[] = $data;
-                    $sum_rates[] = $data['rate'];
-                }
-                if(@count($rate_db)){
-                    $rate_times = count($rate_db);
-                    $sum_rates = array_sum($sum_rates);
-                    $rate_value = $sum_rates/$rate_times;
-                    $rate_bg = (($rate_value)/5)*100;
-                }else{
-                    $rate_times = 0;
-                    $rate_value = 0;
-                    $rate_bg = 0;
-                }
-				$_SESSION['varname'] = $rate_bg;
-				$_SESSION['varname2']=$rate_times;
-        
-            ?>
-            <hr>
-			<h4  style="margin-left:7px">Overall Rating</h4>	
-            <h5  style="margin-left:7px">The content was rated <strong><?php echo $rate_times; ?></strong> times.</h5>
-           
-            <h5  style="margin-left:7px">The rating is at <strong><?php echo round($rate_value,2); ?></strong> .</h5>
-           
-            <div class="rate-result-cnt">
-                <div class="rate-bg" style="width:<?php echo $rate_bg; ?>%"></div>
-                <div class="rate-stars"></div>
-            </div>
-            <hr>
 
-        </div><!-- /rate-result-cnt -->
+
+
+
 			
 	
 	

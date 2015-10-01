@@ -74,10 +74,12 @@ text-align: center
   margin-top: 50px;
 }
 .search-box {
-  width: 80%;
+  width: 50%;
   border: 1px solid #ccc;
   outline: 0;
   border-radius: 0px;
+  margin-left: 200px;
+  margin-top: 10px;
 }
 .search-box:focus {
 

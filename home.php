@@ -126,10 +126,7 @@ and open the template in the editor.
 Sign In
 </a>
             </div>-->
-<div>
-  <input type="text" name="focus" required class="search-box" placeholder="Enter search term" />
-    <button class="close-icon" type="reset"></button>
-  </div>
+
 
 
 			<div id="right">
@@ -157,7 +154,7 @@ Sign In
           <h2 class="mdl-card__title-text" >{{page.name}}</h2>
 		  <div class="rate-result-cnt">
                 <div class="rate-bg" style="width:<?php
-				echo $_COOKIE['blcookie']?>%"> </div>
+				echo $rate_bg?>%"> </div>
                 <div class="rate-stars"></div>
 					<div style="margin-left:90px">(<?php echo $rate_times; ?>)</div>	
             </div>
@@ -202,6 +199,10 @@ Sign In
     </a>
   </div>
 </div>
+
+
+
+
          <div class="mdl-card__supporting-text" ng-if="page.name=='Gmail'">
               <h2 class="mdl-card__title-text" >{{page.name}}</h2>
   {{page.text}} 
@@ -257,7 +258,43 @@ Sign In
   </div>
  
 
-</div> 
+</div>
+
+    <div class="mdl-card__supporting-text" ng-if="page.name=='Box'">
+          <h2 class="mdl-card__title-text" >{{page.name}}</h2>
+ {{page.text}} 
+
+  <div class="mdl-card__actions mdl-card--border">
+    <a class="mdl-button mdl-js-button mdl-js-ripple-effect" href="\OduAppStore\apps\SmartThinking.php">
+      Details
+    </a>
+  </div>
+</div>
+
+    <div class="mdl-card__supporting-text" ng-if="page.name=='ODU Mobile'">
+          <h2 class="mdl-card__title-text" >{{page.name}}</h2>
+ {{page.text}} 
+
+  <div class="mdl-card__actions mdl-card--border">
+    <a class="mdl-button mdl-js-button mdl-js-ripple-effect" href="\OduAppStore\apps\SmartThinking.php">
+      Details
+    </a>
+  </div>
+</div>
+
+    <div class="mdl-card__supporting-text" ng-if="page.name=='Papers'">
+          <h2 class="mdl-card__title-text" >{{page.name}}</h2>
+ {{page.text}} 
+
+  <div class="mdl-card__actions mdl-card--border">
+    <a class="mdl-button mdl-js-button mdl-js-ripple-effect" href="\OduAppStore\apps\SmartThinking.php">
+      Details
+    </a>
+  </div>
+</div>
+
+
+
             
         </div>
        <h4 style="clear: both;margin-left: 20px;">Most Popular  <button class="mdl-button mdl-js-button mdl-js-ripple-effect" style="float: right;clear: both">

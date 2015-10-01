@@ -6,6 +6,10 @@
                         {"name":"Degree Works","text":"Degree Wroks is an app","image":"images/dw.jpg"},
                         {"name":"My Advisor","text":"My Advisor is an app","image":"images/advisor.png"},
                           {"name":"Monarch Link","text":"Monarch Link is an app","image":"images/Monarch.png"},
-                            {"name":"Money matters","text":"Money matters is an app","image":"images/money.jpg"}
+                            {"name":"Money matters","text":"Money matters is an app","image":"images/money.jpg"},
+                                 {"name":"Box","text":"Box is an app","image":"images/bx.png"},
+                                      {"name":"ODU Mobile","text":"Odu Mobile is a mobile an app of apps","image":"images/om.png"},
+                                      {"name":"Papers","text":"Papers is a cool app","image":"images/papers.png"}
+
     
 ]
