@@ -142,12 +142,15 @@ if (isset($_POST["btn-submit"])&&$_POST['reviewText']!=""){
   <main class="mdl-layout__content"  >
   <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
     <div class="page-content" ng-controller="cardControler">
+         <div style="float:left;margin: 1em;">
   <h3 style="margin-left:7px">Smart Thinking</h3>
-<img src="../images/smart.jpg"  style="margin-left:7px">
+<img src="../images/thinking.jpg"  style="margin-left:7px">
 <br><br><br>&nbsp; &nbsp;&nbsp;<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" >
   Start
 </button>
   <hr>
+</div>
+  <div style="float:left;margin: 4em; margin-top:60px;">
   <h4  style="margin-left:7px">Description</h4>
   <hr>
   <p>Smart thinking is a smart app/p>

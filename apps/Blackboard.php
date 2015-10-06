@@ -3,7 +3,7 @@ include_once '../Dbconnect.php';
 $post_id = '1'; 
 session_start();
 $rate_bg=1;
-setcookie('blcookie', $rate_bg, time() + (86400 * 30), "/"); 
+setcookie("blcookie", $rate_bg, time() + (86400 * 30), "/"); 
 
 $appid=1;
 $_SESSION['appidsession']=$appid;
@@ -143,18 +143,36 @@ if (isset($_POST["btn-submit"])&&$_POST['reviewText']!=""){
   <main class="mdl-layout__content"  >
   <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
     <div class="page-content" ng-controller="cardControler">
+      <div style="float:left;margin: 1em;">
 	<h3 style="margin-left:7px">Blackboard</h3>
-<img src="../images/bb.jpeg"  style="margin-left:7px">
+<img src="../images/blackboard.png"  style="margin-left:7px">
 <br><br><br>&nbsp; &nbsp;&nbsp;<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" >
   Start
 </button>
 	<hr>
+</div>
+    <div style="float:left;margin: 4em; margin-top:60px;">
 	<h4  style="margin-left:7px">Description</h4>
 	<hr>
-	<p>Black board is a common platform where students can access course material,submit assignments and take online tests</p>
+
+	<p>Black board is a common platform where students can access course material,submit assignments and take online tests.<br/>
+The company's CEO is Jay Bhatt, who has led Blackboard since October 2012.<br/>
+ The firm provides education, mobile, communication, and commerce software and related services to clients including education providers, corporations and government organizations.<br/> 
+ The software consists of seven platforms called Learn, Transact, Engage, Connect, Mobile, Collaborate and Analytics that are offered as bundled software. <br/>
+ The firm was founded by Michael Chasen, Matthew Pittinsky, Stephen Gilfus and Daniel Cane in 1997, and became a public company in 2004.<br/>
+  It operated publicly until it was purchased by Providence Equity Partners in 2011. <br/>
+  As of January 2014, its software and services are used by approximately 17,000 schools and organizations in 100 countries.<br/>
+  Seventy-five percent of US colleges and universities and more than half of K–12 districts in the United States use its products and services.
+
+
+ </p>
+</div>
+<div style="clear:left;">
 	<h4  style="margin-left:7px">Screenshots</h4>
 	<img src="../images/bbscreen.png"  style="margin-left:7px">
+
 	<hr>
+</div>
       <h4  style="margin-left:7px">Rate App</h4>  
       
 <div class="rate-ex2-cnt">
@@ -190,7 +208,7 @@ if (isset($_POST["btn-submit"])&&$_POST['reviewText']!=""){
             ?>
             <hr>
       <h4  style="margin-left:7px">Overall Rating</h4>  
-            <h5  style="margin-left:7px">The content was rated <strong><?php echo $rate_times; ?></strong> times.</h5>
+            <h5  style="margin-left:7px">The content was rated by <?php echo $rate_times; ?> users.</h5>
            
             <h5  style="margin-left:7px">The rating is at <strong><?php echo round($rate_value,2); ?></strong> .</h5>
            
@@ -232,17 +250,17 @@ if (isset($_POST["btn-submit"])&&$_POST['reviewText']!=""){
   <br><br><br><br>
   
   <?php
-$result = mysql_query("select distinct r.reviewText,r.user,w.rate from Reviews r,wcd_rate w group by r.user having  r.app_id='$appid' and r.user_id=w.user_id");
-if(@mysql_num_rows($result)==0)
+$result = mysql_query("select * from Reviews where app_id='$appid'");
+if(mysql_num_rows($result)==0)
 echo' No Reviews yet ';
 else{
-echo'<table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp"  style="margin-left:7px;width:800px;"><th style="text-align: center;" class="mdl-data-table__cell--non-numeric">Review</th><th>Stars</th><th>By</th>';
+echo'<table class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp"  style="margin-left:7px;width:800px;"><th style="text-align: center;" class="mdl-data-table__cell--non-numeric">Review</th><th>By</th>';
   while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) { 
 
-echo'<tr><td  style="text-align: center;">';echo $line['reviewText'];echo'</td><td>' ;echo$line['rate'] ;echo '</td><td>';echo $line['user'];echo'</td>';
+echo'<tr><td  style="text-align: center;">';echo $line['reviewText'];echo'</td><td>' ;echo $line['user'];echo'</td>';
  //echo "<br>\n";
   }
-  echo'</tr></table>';
+  echo'</td></tr></table>';
 }
   ?>
   </div>

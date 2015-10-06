@@ -3,6 +3,9 @@ include_once '../Dbconnect.php';
 $post_id = '1'; 
 session_start();
 $appid=2;
+$rate_bg=1;
+
+setcookie('lycookie', $rate_bg, time() + (86400 * 30), "/"); 
 $_SESSION['appidsession']=$appid;
 
 $user=$_SESSION['user'];
@@ -140,18 +143,24 @@ if (isset($_POST["btn-submit"])&&$_POST['reviewText']!=""){
   <main class="mdl-layout__content"  >
   <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
     <div class="page-content" ng-controller="cardControler">
+            <div style="float:left;margin: 1em;">
   <h3 style="margin-left:7px">Lynda</h3>
-<img src="../images/ly.jpg"  style="margin-left:7px">
+<img src="../images/lynda.png"  style="margin-left:7px">
 <br><br><br>&nbsp; &nbsp;&nbsp;<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" >
   Start
 </button>
   <hr>
+</div>
+  <div style="float:left;margin: 4em; margin-top:60px;">
   <h4  style="margin-left:7px">Description</h4>
   <hr>
   <p>Lynda is an online video tutorial repository.Free of cost for ODU students</p>
+  </div>
+  <div style="clear:left;">
   <h4  style="margin-left:7px">Screenshots</h4>
   <img src="../images/lyscreen.png"  style="margin-left:7px">
   <hr>
+</div>
     <div class="reviewDiv"><h4  style="margin-left:7px">User Reviews</h4>
     <div><h5 style="margin-left:7px">Write a Review</h5></div>
     <!--<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" id="reviewButton" 
@@ -175,7 +184,7 @@ if (isset($_POST["btn-submit"])&&$_POST['reviewText']!=""){
   <br><br><br><br>
   
   <?php
-$result = mysql_query("select * from Reviews where app_id=2");
+$result = mysql_query("select * from Reviews where app_id='$appid'");
 if(mysql_num_rows($result)==0)
 echo' No Reviews yet ';
 else{

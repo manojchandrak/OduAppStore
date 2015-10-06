@@ -154,7 +154,7 @@ Sign In
           <h2 class="mdl-card__title-text" >{{page.name}}</h2>
 		  <div class="rate-result-cnt">
                 <div class="rate-bg" style="width:<?php
-				echo $rate_bg?>%"> </div>
+				echo $_COOKIE["blcookie"]?>%"> </div>
                 <div class="rate-stars"></div>
 					<div style="margin-left:90px">(<?php echo $rate_times; ?>)</div>	
             </div>
@@ -177,7 +177,7 @@ Sign In
           <h2 class="mdl-card__title-text" >{{page.name}}</h2>
            <div class="rate-result-cnt">
                 <div class="rate-bg" style="width:<?php
-        echo $rate_bg?>%"> </div>
+        echo $_COOKIE['lycookie']?>%"> </div>
                 <div class="rate-stars"></div>
           <div style="margin-left:90px">(<?php echo $rate_times; ?>)</div>  
             </div>

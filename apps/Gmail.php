@@ -143,7 +143,7 @@ if (isset($_POST["btn-submit"])&&$_POST['reviewText']!=""){
   <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
     <div class="page-content" ng-controller="cardControler">
   <h3 style="margin-left:7px">GMail</h3>
-<img src="../images/gm.png"  style="margin-left:7px">
+<img src="../images/gmail.png"  style="margin-left:7px">
 <br><br><br>&nbsp; &nbsp;&nbsp;<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" >
   Start
 </button>
